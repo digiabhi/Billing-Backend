@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false
     },
     vendor_email: {
-      type: DataTypes.String,
+      type: DataTypes.STRING,
       allowNull:false,
       validate: {
         isEmail: true
@@ -38,13 +38,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       validate: {
         isNumeric:true,
-        min: 10,
-        max: 10
+        len: {
+          args: 10,
+          msg: "Contact No Must be 10 Digits"
+        }
       }
     },
     contact_email: {
       type:DataTypes.STRING,
-      allowNull:false,
       validate: {
         isEmail: true
       }
@@ -53,16 +54,20 @@ module.exports = (sequelize, DataTypes) => {
       type:DataTypes.STRING,
       validate: {
         isAlphanumeric: true,
-        min: 10,
-        max: 10
+        len: {
+          args: 10,
+          msg: "PAN Must be 10 Digits"
+        }
       }
     },
     gst: {
       type:DataTypes.STRING,
       validate: {
         isAlphanumeric: true,
-        min: 15,
-        max: 15
+        len: {
+          args: 15,
+          msg: "GST Must be 15 Digits"
+        }
       }
     }
   }, {

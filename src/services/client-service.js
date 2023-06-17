@@ -1,13 +1,13 @@
-const { ItemRepository } = require('../repositories');
+const { ClientRepository } = require('../repositories');
 const {StatusCodes} = require("http-status-codes");
 
-const itemRepository = new ItemRepository();
+const clientRepository = new ClientRepository();
 
 const AppError = require('../utils/errors/app-error')
-async function createItem(data){
+async function createClient(data){
     try {
-        const item = await itemRepository.create(data);
-        return item;
+        const client = await clientRepository.create(data);
+        return client;
     }
     catch(error) {
         if(error.name == 'SequelizeValidationError') {
@@ -17,10 +17,10 @@ async function createItem(data){
             });
             throw new AppError(explanation, StatusCodes.BAD_REQUEST);
         }
-        throw new AppError('Cannot create a new Item', StatusCodes.INTERNAL_SERVER_ERROR);
+        throw new AppError('Cannot create a new Client', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
 module.exports = {
-    createItem
+    createClient
 };

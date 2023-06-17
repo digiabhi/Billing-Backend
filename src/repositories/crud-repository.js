@@ -11,7 +11,6 @@ class CrudRepository {
             return response;
         }
         catch (error) {
-
             Logger.error("Something went wrong in the Crud Repo :create");
             throw error;
         }

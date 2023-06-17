@@ -19,13 +19,15 @@ module.exports = {
       price: 78,
       createdAt: new Date(),
       updatedAt: new Date()
-    },{
+    },
+      {
       name: 'Folding Board',
       hsn: 154213,
       price: 80,
       createdAt: new Date(),
       updatedAt: new Date()
-    },{
+    },
+      {
       name: 'Duplex Board',
       hsn: 154213,
       price: 82,
