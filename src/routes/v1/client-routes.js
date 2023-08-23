@@ -6,6 +6,8 @@ const {ClientMiddlewares} = require('../../middlewares')
 
 const router = express.Router();
 
-router.post('/', ClientMiddlewares.validateCreateRequest, ClientController.createClient)
+router.post('/', ClientMiddlewares.validateCreateRequest, ClientController.createClient);
+
+router.get('/',ClientController.getClients)
 
 module.exports = router;

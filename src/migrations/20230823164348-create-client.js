@@ -7,28 +7,28 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
-      name: {
+      clientName: {
         type: Sequelize.STRING,
         allowNull:false,
       },
-      address: {
+      clientAddress: {
         type: Sequelize.STRING,
         allowNull:false,
       },
-      client_email: {
+      clientEmail: {
         type: Sequelize.STRING,
         allowNull:false,
         validate: {
           isEmail: true
         }
       },
-      contact_name: {
+      contactName: {
         type: Sequelize.STRING,
         allowNull:false,
       },
-      contact_no: {
+      contactNo: {
         type: Sequelize.STRING,
         allowNull:false,
         validate: {
@@ -39,14 +39,16 @@ module.exports = {
           }
         }
       },
-      contact_email: {
+      contactEmail: {
         type: Sequelize.STRING,
+        allowNull:false,
         validate: {
           isEmail: true
         }
       },
-      pan: {
+      clientPan: {
         type: Sequelize.STRING,
+        allowNull:false,
         validate: {
           isAlphanumeric: true,
           len: {
@@ -55,7 +57,7 @@ module.exports = {
           }
         }
       },
-      gst: {
+      clientGst: {
         type: Sequelize.STRING,
         validate: {
           isAlphanumeric: true,

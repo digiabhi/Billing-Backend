@@ -16,21 +16,27 @@ module.exports = {
     await queryInterface.bulkInsert('Items',[{
       name: 'Cuppa Board',
       hsn: 154213,
-      price: 78,
+      buyPrice: 78,
+      sellPrice: 81,
+      tracking:true,
       createdAt: new Date(),
       updatedAt: new Date()
     },
       {
       name: 'Folding Board',
       hsn: 154213,
-      price: 80,
+      buyPrice: 80,
+        sellPrice: 82,
+        tracking:true,
       createdAt: new Date(),
       updatedAt: new Date()
     },
       {
       name: 'Duplex Board',
       hsn: 154213,
-      price: 82,
+      buyPrice: 82,
+        sellPrice: 84,
+        tracking:false,
       createdAt: new Date(),
       updatedAt: new Date()
     }

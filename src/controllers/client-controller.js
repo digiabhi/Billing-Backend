@@ -29,6 +29,22 @@ async function createClient(req, res){
     }
 }
 
+/**
+ * GET : /clients
+ * req-body {}
+ */
+async function getClients(req, res) {
+    try {
+        const clients = await ClientService.getClients();
+        SuccessResponse.data = clients;
+        return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+        ErrorResponse.error = error;
+        return res.status(error.statusCode).json(ErrorResponse);
+    }
+}
+
 module.exports = {
-    createClient
+    createClient,
+    getClients
 }

@@ -11,29 +11,36 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // this.belongsTo(models.Invoice, {
+      //   foreignKey: "invoiceId",
+      //   as: 'invoiceDetails',
+      // });
+      this.hasMany(models.Invoice, {
+        foreignKey: "clientId",
+      });
     }
   }
   Client.init({
-    name: {
+    clientName: {
       type:DataTypes.STRING,
       allowNull:false
     },
-    address: {
+    clientAddress: {
       type:DataTypes.STRING,
       allowNull:false
     },
-    client_email: {
-      type: DataTypes.STRING,
+    clientEmail: {
+      type:DataTypes.STRING,
       allowNull:false,
       validate: {
         isEmail: true
       }
     },
-    contact_name: {
+    contactName: {
       type:DataTypes.STRING,
       allowNull:false
     },
-    contact_no: {
+    contactNo: {
       type:DataTypes.STRING,
       allowNull:false,
       validate: {
@@ -44,14 +51,16 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    contact_email: {
+    contactEmail: {
       type:DataTypes.STRING,
+      allowNull:false,
       validate: {
         isEmail: true
       }
     },
-    pan: {
+    clientPan: {
       type:DataTypes.STRING,
+      allowNull:false,
       validate: {
         isAlphanumeric: true,
         len: {
@@ -60,8 +69,9 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    gst: {
+    clientGst: {
       type:DataTypes.STRING,
+      allowNull:false,
       validate: {
         isAlphanumeric: true,
         len: {

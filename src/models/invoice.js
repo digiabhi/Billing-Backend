@@ -2,10 +2,11 @@
 const {
   Model
 } = require('sequelize');
-const { Enums } = require('../utils/common');
+const {Enums} = require("../utils/common");
+const {GST0,GST5,GST12,GST18,GST28} = Enums.TAX_SLABS;
 const {KG,UNITS,PCS,BOX} = Enums.UNIT_TYPES;
 module.exports = (sequelize, DataTypes) => {
-  class Item extends Model {
+  class Invoice extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,30 +14,52 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Client, {
+        foreignKey: "clientId",
+        as: 'clientDetail',
+      });
     }
   }
-  Item.init({
-    name: {
+  Invoice.init({
+    invoiceId: {
       type:DataTypes.STRING,
       allowNull:false
     },
-    hsn: {
-      type:DataTypes.STRING,
+    clientId: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+    },
+    invoiceDate: {
+      type:DataTypes.DATE,
       allowNull:false
     },
-    buyPrice: {
+    dueDate: {
+      type:DataTypes.DATE,
+      allowNull:false
+    },
+    poId: {
+      type:DataTypes.STRING
+    },
+    itemId: {
+      type:DataTypes.INTEGER,
+      allowNull:false
+    },
+    price: {
       type:DataTypes.INTEGER,
       allowNull:false,
       validate: {
         isNumeric: true
       }
     },
-    sellPrice: {
+    quantity: {
       type:DataTypes.INTEGER,
       allowNull:false,
       validate: {
         isNumeric: true
       }
+      },
+    description: {
+      type:DataTypes.STRING
     },
     unit: {
       type:DataTypes.ENUM,
@@ -44,13 +67,15 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue:UNITS,
       allowNull:false
     },
-    tracking: {
-      type:DataTypes.BOOLEAN,
+    tax: {
+      type:DataTypes.ENUM,
+      values:[GST0,GST5,GST12,GST18,GST28],
+      defaultValue:GST12,
       allowNull:false
     }
   }, {
     sequelize,
-    modelName: 'Item',
+    modelName: 'Invoice',
   });
-  return Item;
+  return Invoice;
 };
