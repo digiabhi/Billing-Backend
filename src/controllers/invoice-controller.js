@@ -5,37 +5,36 @@ const { InvoiceService } =  require('../services')
 const { SuccessResponse, ErrorResponse } = require ('../utils/common');
 /**
  *
- * POST : /clients
+ * POST : /invoices
  * req-body {name: 'Client Name', address: 'Client Address', client_email: 'Client official email', contact_name: 'Primary contact name from client side', contact_no: 'Primary contact name from client side', contact_email: 'Primary contact email from client side', pan: 'Client PAN', gst: 'Client GST'}
  */
-// async function createClient(req, res){
-//     try {
-//         const client = await ClientService.createClient({
-//             name: req.body.name,
-//             address: req.body.address,
-//             client_email: req.body.client_email,
-//             contact_name: req.body.contact_name,
-//             contact_no: req.body.contact_no,
-//             contact_email: req.body.contact_email,
-//             pan: req.body.pan,
-//             gst: req.body.gst
-//         });
-//         SuccessResponse.data = client;
-//         return res.status(StatusCodes.CREATED).json(SuccessResponse);
-//     }
-//     catch(error) {
-//         ErrorResponse.error = error;
-//         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse)
-//     }
-// }
+async function createInvoice(req, res){
+    try {
+        const invoice = await InvoiceService.createInvoice({
+            invoiceId: req.body.invoiceId,
+            clientId: req.body.clientId,
+            invoiceDate: req.body.invoiceDate,
+            dueDate: req.body.dueDate,
+            itemId: req.body.itemId,
+            price: req.body.price,
+            quantity: req.body.quantity
+        });
+        SuccessResponse.data = invoice;
+        return res.status(StatusCodes.CREATED).json(SuccessResponse);
+    }
+    catch(error) {
+        ErrorResponse.error = error;
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json(ErrorResponse)
+    }
+}
 
 /**
  * GET : /invoices
  * req-body {}
  */
-async function getInvoices(req, res) {
+async function getAllInvoices(req, res) {
     try {
-        const invoices = await InvoiceService.getInvoices();
+        const invoices = await InvoiceService.getAllInvoices();
         SuccessResponse.data = invoices;
         return res.status(StatusCodes.OK).json(SuccessResponse);
     } catch (error) {
@@ -45,5 +44,6 @@ async function getInvoices(req, res) {
 }
 
 module.exports = {
-    getInvoices
+    createInvoice,
+    getAllInvoices
 }

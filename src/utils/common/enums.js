@@ -5,11 +5,11 @@ const UNIT_TYPES = {
     PCS: 'Pieces'
 }
 const TAX_SLABS = {
-    GST0: 'GST0%',
-    GST5: 'GST5%',
-    GST12: 'GST12%',
-    GST18: 'GST18%',
-    GST28: 'GST28%'
+    GST0: 0,
+    GST5: 5,
+    GST12: 12,
+    GST18: 18,
+    GST28: 28
 }
 module.exports = {
     UNIT_TYPES,

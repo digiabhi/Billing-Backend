@@ -14,7 +14,8 @@ module.exports = {
       },
       invoiceId: {
         type: Sequelize.STRING,
-        allowNull:false
+        allowNull:false,
+        unique:true
       },
       clientId: {
         type: Sequelize.INTEGER,
@@ -23,6 +24,7 @@ module.exports = {
           model: "Clients",
           key: "id",
         },
+        onDelete: 'CASCADE'
       },
       invoiceDate: {
         type: Sequelize.DATE,
@@ -37,7 +39,12 @@ module.exports = {
       },
       itemId: {
         type: Sequelize.INTEGER,
-        allowNull:false
+        allowNull:false,
+        references: {
+          model: "Items",
+          key: "id",
+        },
+        onDelete: 'CASCADE'
       },
       price: {
         type: Sequelize.INTEGER,

@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "clientId",
         as: 'clientDetail',
       });
+      this.belongsTo(models.Item, {
+        foreignKey: "itemId",
+        as: 'itemDetail',
+      });
     }
   }
   Invoice.init({
@@ -42,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     itemId: {
       type:DataTypes.INTEGER,
-      allowNull:false
+      allowNull:false,
     },
     price: {
       type:DataTypes.INTEGER,

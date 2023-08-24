@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Invoice, {
+        foreignKey: "itemId"
+      });
     }
   }
   Item.init({
@@ -32,6 +35,13 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     sellPrice: {
+      type:DataTypes.INTEGER,
+      allowNull:false,
+      validate: {
+        isNumeric: true
+      }
+    },
+    totalQuantity: {
       type:DataTypes.INTEGER,
       allowNull:false,
       validate: {

@@ -15,8 +15,6 @@ async function createItem(req, res){
             hsn:req.body.hsn,
             buyPrice: req.body.buyPrice,
             sellPrice: req.body.sellPrice,
-            unit:req.body.unit,
-            tracking:req.body.tracking
         });
         SuccessResponse.data = item;
         return res.status(StatusCodes.CREATED).json(SuccessResponse);

@@ -1,7 +1,7 @@
 'use strict';
+/** @type {import('sequelize-cli').Migration} */
 const { Enums } = require('../utils/common');
 const {KG,UNITS,PCS,BOX} = Enums.UNIT_TYPES;
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Items', {
@@ -33,6 +33,13 @@ module.exports = {
           isNumeric: true
         }
       },
+      totalQuantity: {
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        validate: {
+          isNumeric: true
+        }
+      },
       unit: {
         type: Sequelize.ENUM,
         values:[KG,UNITS,PCS,BOX],
@@ -41,7 +48,7 @@ module.exports = {
       },
       tracking: {
         type: Sequelize.BOOLEAN,
-        allowNull:false,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,

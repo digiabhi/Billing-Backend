@@ -18,6 +18,7 @@ module.exports = {
       hsn: 154213,
       buyPrice: 78,
       sellPrice: 81,
+      totalQuantity: 120,
       tracking:true,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -27,6 +28,7 @@ module.exports = {
       hsn: 154213,
       buyPrice: 80,
         sellPrice: 82,
+        totalQuantity: 135,
         tracking:true,
       createdAt: new Date(),
       updatedAt: new Date()
@@ -36,6 +38,7 @@ module.exports = {
       hsn: 154213,
       buyPrice: 82,
         sellPrice: 84,
+        totalQuantity: 95,
         tracking:false,
       createdAt: new Date(),
       updatedAt: new Date()

@@ -6,8 +6,8 @@ const {InvoiceController} = require('../../controllers');
 
 const router = express.Router();
 
-// router.post('/', ClientMiddlewares.validateCreateRequest, ClientController.createClient);
+router.post('/',  InvoiceController.createInvoice);
 
-router.get('/',InvoiceController.getInvoices)
+router.get('/',InvoiceController.getAllInvoices)
 
 module.exports = router;
